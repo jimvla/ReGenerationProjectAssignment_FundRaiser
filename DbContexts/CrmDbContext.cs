@@ -1,20 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Protocols;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ReGenerationProjectAssignment_FundRaiser.Models;
 
 namespace ReGenerationProjectAssignment_FundRaiser.DbContexts
 {
     public class CrmDbContext : DbContext
     {
-        /*public DbSet<Product> Products { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<Payment> Payments { get; set; }*/
+        public DbSet<User> Users { get; set; }
+        public DbSet<Project> projects { get; set; }
+        public DbSet<Status_Update> Status_Updates { get; set; }
+        public DbSet<Funding_Package> Funding_Packages { get; set; }
+        public DbSet<Transaction_Tracker> Transaction_Tracker { get; set; }
+        public DbSet<Project_Tracker> Project_Tracker { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         public CrmDbContext() { }
         public CrmDbContext(DbContextOptions<CrmDbContext> options) : base(options)
