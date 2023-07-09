@@ -2,7 +2,7 @@
 {
     public class Project_Tracker
     {
-        public int TrackerID { get; set; }
+        public int TrackerId { get; set; }
         public int Amount { get; set; }
     }
 }
