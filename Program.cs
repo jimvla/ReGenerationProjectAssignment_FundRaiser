@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CrmDbContext>(
     options => options.UseSqlServer(
            builder.Configuration
-            .GetConnectionString("localIntegrated")));
+            .GetConnectionString("localIntegrated"))  );
 
 var app = builder.Build();
 
