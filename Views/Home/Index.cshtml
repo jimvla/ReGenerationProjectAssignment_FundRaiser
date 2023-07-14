@@ -1,8 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> <br/>
+
+<div class="container-fluid">
+    <h2>Trending</h2>
+    <div class="row">
+        <div class="col">
+            Trending Image #1
+        </div>
+        <div class="col">
+            Trending Image #2
+        </div>
+        <div class="col">
+            Trending Image #3
+        </div>
+    </div>
 </div>
+<br/>
+
+<div class="container text-center">
+    <h3>Categories</h3><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
+            <b>Tech</b>
+        </div>
+        <div class="col-sm-4">
+            <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
+            <b>Art</b>
+        </div>
+        <div class="col-sm-4">
+            <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
+            <b>Home</b>
+        </div>
+    </div>
+</div>
+<br/>
+
