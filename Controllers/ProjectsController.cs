@@ -19,6 +19,36 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             _context = context;
         }
 
+        public IActionResult TechProjects()
+        {
+            var techprojects = _context.projects
+                .Include("Category")
+                .Where(p => p.Category.CategoryId == 1)
+                .ToList();
+
+            return View(techprojects);
+        }
+
+        public IActionResult ArtProjects()
+        {
+            var artprojects = _context.projects
+                .Include("Category")
+                .Where(p => p.Category.CategoryId == 2)
+                .ToList();
+
+            return View(artprojects);
+        }
+
+        public IActionResult HomeProjects()
+        {
+            var artprojects = _context.projects
+                .Include("Category")
+                .Where(p => p.Category.CategoryId == 3)
+                .ToList();
+
+            return View(artprojects);
+        }
+
         // GET: Projects
         public async Task<IActionResult> Index()
         {

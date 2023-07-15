@@ -241,17 +241,17 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Project", b =>
                 {
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Category", "Category")
-                        .WithMany("Projects")
+                        .WithMany("ProjectCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Status_Update", null)
-                        .WithMany("Projects")
+                        .WithMany("ProjectCategories")
                         .HasForeignKey("Status_UpdateStatusId");
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.User", "User")
-                        .WithMany("Projects")
+                        .WithMany("ProjectCategories")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -306,7 +306,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Category", b =>
                 {
-                    b.Navigation("Projects");
+                    b.Navigation("ProjectCategories");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Funding_Package", b =>
@@ -332,12 +332,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Status_Update", b =>
                 {
-                    b.Navigation("Projects");
+                    b.Navigation("ProjectCategories");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.User", b =>
                 {
-                    b.Navigation("Projects");
+                    b.Navigation("ProjectCategories");
 
                     b.Navigation("Transaction_Trackers");
                 });

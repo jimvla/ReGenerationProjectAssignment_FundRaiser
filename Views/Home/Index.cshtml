@@ -25,18 +25,24 @@
 
 <div class="container text-center">
     <h3>Categories</h3><br>
-    <div class="row">
+    <div class="row">     
         <div class="col-sm-4">
-            <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
-            <b>Tech</b>
+            <a class="nav-link text-dark" href="Projects/TechProjects">
+                <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
+                <b>Tech</b>
+            </a>
         </div>
         <div class="col-sm-4">
-            <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
-            <b>Art</b>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="ArtProjects">
+                <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
+                <b>Art</b>
+            </a>
         </div>
         <div class="col-sm-4">
-            <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
-            <b>Home</b>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Projects" asp-action="HomeProjects">
+                <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
+                <b>Home</b>
+            </a>
         </div>
     </div>
 </div>
