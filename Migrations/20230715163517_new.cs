@@ -17,8 +17,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoryDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -45,10 +45,10 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 {
                     PackageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    PackageName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: true),
+                    PackageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PackageValue = table.Column<int>(type: "int", nullable: false),
-                    PackageRewared = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PackageReward = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Project_TrackerTrackerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -62,8 +62,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 {
                     TrackerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true)
+                    ProjectId = table.Column<int>(type: "int", nullable: true),
+                    Amount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,9 +78,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VideoURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VideoURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     FundingGoal = table.Column<int>(type: "int", nullable: false),
                     Status_UpdateStatusId = table.Column<int>(type: "int", nullable: true)
@@ -129,35 +129,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Transaction_Tracker",
-                columns: table => new
-                {
-                    TransactionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: true),
-                    FundingPackagePackageId = table.Column<int>(type: "int", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transaction_Tracker", x => x.TransactionId);
-                    table.ForeignKey(
-                        name: "FK_Transaction_Tracker_Funding_Packages_FundingPackagePackageId",
-                        column: x => x.FundingPackagePackageId,
-                        principalTable: "Funding_Packages",
-                        principalColumn: "PackageId");
-                    table.ForeignKey(
-                        name: "FK_Transaction_Tracker_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId");
-                    table.ForeignKey(
-                        name: "FK_Transaction_Tracker_projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "projects",
-                        principalColumn: "ProjectId");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Funding_Packages_Project_TrackerTrackerId",
                 table: "Funding_Packages",
@@ -198,21 +169,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 table: "Status_Updates",
                 column: "ProjectId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Transaction_Tracker_FundingPackagePackageId",
-                table: "Transaction_Tracker",
-                column: "FundingPackagePackageId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transaction_Tracker_ProjectId",
-                table: "Transaction_Tracker",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transaction_Tracker_UserId",
-                table: "Transaction_Tracker",
-                column: "UserId");
-
             migrationBuilder.AddForeignKey(
                 name: "FK_Funding_Packages_Project_Tracker_Project_TrackerTrackerId",
                 table: "Funding_Packages",
@@ -225,8 +181,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 table: "Funding_Packages",
                 column: "ProjectId",
                 principalTable: "projects",
-                principalColumn: "ProjectId",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "ProjectId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Project_Tracker_projects_ProjectId",
@@ -253,9 +208,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Status_Updates_projects_ProjectId",
                 table: "Status_Updates");
-
-            migrationBuilder.DropTable(
-                name: "Transaction_Tracker");
 
             migrationBuilder.DropTable(
                 name: "Funding_Packages");

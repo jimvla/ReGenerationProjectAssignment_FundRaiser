@@ -12,7 +12,7 @@ using ReGenerationProjectAssignment_FundRaiser.DbContexts;
 namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20230714125247_new")]
+    [Migration("20230715163517_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -34,11 +34,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoryName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
@@ -55,17 +53,15 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PackageId"));
 
                     b.Property<string>("PackageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PackageReward")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PackageValue")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProjectId")
+                    b.Property<int?>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Project_TrackerTrackerId")
@@ -92,14 +88,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FundingGoal")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Status_UpdateStatusId")
@@ -113,7 +107,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("VideoURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProjectId");
@@ -177,31 +170,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     b.ToTable("Status_Updates");
                 });
 
-            modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Transaction_Tracker", b =>
-                {
-                    b.Property<string>("TransactionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("FundingPackagePackageId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TransactionId");
-
-                    b.HasIndex("FundingPackagePackageId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Transaction_Tracker");
-                });
-
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -227,9 +195,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 {
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project", "Project")
                         .WithMany("Funding_Packages")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProjectId");
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project_Tracker", null)
                         .WithMany("Funding_Packages")
@@ -241,17 +207,17 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Project", b =>
                 {
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Category", "Category")
-                        .WithMany("ProjectCategories")
+                        .WithMany("Projects")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Status_Update", null)
-                        .WithMany("ProjectCategories")
+                        .WithMany("Projects")
                         .HasForeignKey("Status_UpdateStatusId");
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.User", "User")
-                        .WithMany("ProjectCategories")
+                        .WithMany("Projects")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -263,9 +229,11 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Project_Tracker", b =>
                 {
-                    b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project", null)
+                    b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project", "Project")
                         .WithMany("Project_Trackers")
                         .HasForeignKey("ProjectId");
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Status_Update", b =>
@@ -283,35 +251,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Transaction_Tracker", b =>
-                {
-                    b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Funding_Package", "FundingPackage")
-                        .WithMany("Transaction_Trackers")
-                        .HasForeignKey("FundingPackagePackageId");
-
-                    b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project", "Project")
-                        .WithMany("Transaction_Trackers")
-                        .HasForeignKey("ProjectId");
-
-                    b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.User", "User")
-                        .WithMany("Transaction_Trackers")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("FundingPackage");
-
-                    b.Navigation("Project");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Category", b =>
                 {
-                    b.Navigation("ProjectCategories");
-                });
-
-            modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Funding_Package", b =>
-                {
-                    b.Navigation("Transaction_Trackers");
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Project", b =>
@@ -319,8 +261,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     b.Navigation("Funding_Packages");
 
                     b.Navigation("Project_Trackers");
-
-                    b.Navigation("Transaction_Trackers");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Project_Tracker", b =>
@@ -332,14 +272,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.Status_Update", b =>
                 {
-                    b.Navigation("ProjectCategories");
+                    b.Navigation("Projects");
                 });
 
             modelBuilder.Entity("ReGenerationProjectAssignment_FundRaiser.Models.User", b =>
                 {
-                    b.Navigation("ProjectCategories");
-
-                    b.Navigation("Transaction_Trackers");
+                    b.Navigation("Projects");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,6 +7,5 @@
         public string UserSurName { get; set; }
 
         public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
-        public virtual IEnumerable<Transaction_Tracker> Transaction_Trackers { get; set; } = new List<Transaction_Tracker>();
     }
 }
