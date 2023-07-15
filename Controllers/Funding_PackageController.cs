@@ -56,7 +56,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PackageId,PackageName,PackageValue,PackageRewared")] Funding_Package funding_Package)
+        public async Task<IActionResult> Create([Bind("PackageId,PackageName,PackageValue,PackageReward")] Funding_Package funding_Package)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PackageId,PackageName,PackageValue,PackageRewared")] Funding_Package funding_Package)
+        public async Task<IActionResult> Edit(int id, [Bind("PackageId,PackageName,PackageValue,PackageReward")] Funding_Package funding_Package)
         {
             if (id != funding_Package.PackageId)
             {

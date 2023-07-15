@@ -50,6 +50,9 @@
     </dl>
 </div>
 <div>
+    <input type="button" class="btn btn-success" value="FUND" onclick="location.href='@Url.Action("Create", "Projects")'" />
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

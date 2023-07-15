@@ -55,7 +55,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PackageRewared")
+                    b.Property<string>("PackageReward")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
