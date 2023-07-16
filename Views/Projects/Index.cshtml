@@ -48,7 +48,8 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ImageURL)
+                            @*@Html.DisplayFor(modelItem => item.ImageURL)*@
+                            <img src="@item.ImageURL" style="width:100px; height:100px; object-fit:contain" alt="image"/>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.VideoURL)
