@@ -112,6 +112,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TotalAmount")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 

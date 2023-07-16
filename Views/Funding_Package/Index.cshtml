@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ReGenerationProjectAssignment_FundRaiser.Models.Funding_Package>
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Main_layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,9 +12,7 @@
     <title>Index</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -43,9 +41,10 @@
                 @Html.DisplayFor(modelItem => item.PackageReward)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PackageId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PackageId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PackageId">Delete</a>
+                        @*<a asp-action="Projects" asp-route-id="@item.PackageId">FUND</a> *@
+                        <form asp-action="Edit">
+                            <input type="submit" value="@item.PackageValue" class="btn btn-sm" />
+                        </form>
             </td>
         </tr>
 }

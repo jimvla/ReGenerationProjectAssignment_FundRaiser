@@ -12,7 +12,7 @@ using ReGenerationProjectAssignment_FundRaiser.DbContexts;
 namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20230715213028_new")]
+    [Migration("20230716122153_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -114,6 +114,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TotalAmount")
+                        .HasColumnType("int");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");

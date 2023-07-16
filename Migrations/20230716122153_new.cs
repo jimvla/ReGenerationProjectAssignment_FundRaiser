@@ -102,6 +102,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VideoURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FundingGoal = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     Project_TrackerTrackerId = table.Column<int>(type: "int", nullable: true),
