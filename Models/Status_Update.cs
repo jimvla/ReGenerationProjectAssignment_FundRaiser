@@ -7,7 +7,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Models
         [Key]
         public int StatusId { get; set; }
         public string? Message { get; set; }
-        public required Project Project { get; set; }
+        public Project Project { get; set; }
         public DateTime DateTime { get; set; }
 
         public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();

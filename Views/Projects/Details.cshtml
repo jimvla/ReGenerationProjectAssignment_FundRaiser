@@ -1,7 +1,6 @@
 ﻿@model ReGenerationProjectAssignment_FundRaiser.Models.Project
-
 @{
-    
+    var category = ViewData["Categories"] as Category;
 }
 
 <!DOCTYPE html>
@@ -14,7 +13,10 @@
 <body>
 
 <div>
-    <h4>Project</h4>
+    <h4>@Model.Title</h4>
+    <div class="content">
+        <img src="@Model.ImageURL" alt="image" />
+    </div>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -47,7 +49,19 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FundingGoal)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @category.CategoryName 
+        </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Funding_Packages)
+            </dd>
     </dl>
+</div>
+<div>
+    <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a> |

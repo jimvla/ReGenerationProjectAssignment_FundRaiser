@@ -6,10 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var myConn = "Server=AMD-FX6300\\SQLSERVER2019;Initial Catalog=Regeneration;" +
+        "Integrated security=True;TrustServerCertificate=True;";
+
 builder.Services.AddDbContext<CrmDbContext>(
-    options => options.UseSqlServer(
-           builder.Configuration
-            .GetConnectionString("localIntegrated"))  );
+    options => options.UseSqlServer(myConn));
 
 var app = builder.Build();
 

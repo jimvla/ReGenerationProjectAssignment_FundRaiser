@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ReGenerationProjectAssignment_FundRaiser.Models.Project>
 
 @{
-    
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,56 +12,68 @@
     <title>Index</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VideoURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FundingGoal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VideoURL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FundingGoal)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProjectId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProjectId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <h1>My Projects</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VideoURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FundingGoal)
+                </th>
+                <th>
+                    Progress
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImageURL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VideoURL)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FundingGoal) $
+                        </td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ProjectId"><i class="bi bi-pencil-square"></i></a> |
+           
+                            <a asp-action="Delete" asp-route-id="@item.ProjectId"><i class="bi bi-trash3-fill"></i></a> |
+            
+                            <a asp-action="Details" asp-route-id="@item.ProjectId"><i class="bi bi-box-arrow-in-right"></i></a> 
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        <input type="button" class="btn btn-success" value="Create" onclick="location.href='@Url.Action("Create", "Projects")'" />
+    </p>
 </body>
 </html>

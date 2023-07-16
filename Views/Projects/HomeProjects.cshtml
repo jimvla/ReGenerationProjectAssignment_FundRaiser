@@ -1,0 +1,36 @@
+﻿@model List<Project>
+
+@{
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+
+</head>
+<body>
+    <h1>Home Projects</h1>
+
+    <table>
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+            <!-- Add more columns as per your project properties -->
+        </tr>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.Title</td>
+                <td>@project.Description</td>
+                <!-- Add more columns as per your project properties -->
+            </tr>
+        }
+    </table>
+
+
+</body>
+</html>

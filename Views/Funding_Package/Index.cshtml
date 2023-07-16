@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<ReGenerationProjectAssignment_FundRaiser.Models.Funding_Package>
 
 @{
-    
+    Layout = "~/Views/Shared/Main_layout.cshtml";
+    var projects = ViewData["Projects"] as Project;
+
 }
 
 <!DOCTYPE html>
@@ -12,9 +14,9 @@
     <title>Index</title>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+    <h5></h5>
+
 <table class="table">
     <thead>
         <tr>
@@ -25,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.PackageValue)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PackageRewared)
+                @Html.DisplayNameFor(model => model.PackageReward)
             </th>
             <th></th>
         </tr>
@@ -40,12 +42,13 @@
                 @Html.DisplayFor(modelItem => item.PackageValue)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PackageRewared)
+                @Html.DisplayFor(modelItem => item.PackageReward)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PackageId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PackageId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PackageId">Delete</a>
+                        @*<a asp-action="Projects" asp-route-id="@item.PackageId">FUND</a> *@
+                        <form asp-action="Edit"> @*@item.PackageValue*@
+                            <input type="button" class="btn btn-success" value="FUND" onclick="location.href='@Url.Action("Edit/", "Funding_Package")'" />
+                        </form>
             </td>
         </tr>
 }

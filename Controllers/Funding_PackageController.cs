@@ -56,7 +56,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PackageId,PackageName,PackageValue,PackageRewared")] Funding_Package funding_Package)
+        public async Task<IActionResult> Create([Bind("PackageId,PackageName,PackageValue,PackageReward")] Funding_Package funding_Package)
         {
             if (ModelState.IsValid)
             {
@@ -88,9 +88,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PackageId,PackageName,PackageValue,PackageRewared")] Funding_Package funding_Package)
+        public async Task<IActionResult> Edit(int id, [Bind("TotalAmount")] Project project)
         {
-            if (id != funding_Package.PackageId)
+            if (id != project.ProjectId)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             {
                 try
                 {
-                    _context.Update(funding_Package);
+                    _context.Update(project);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Funding_PackageExists(funding_Package.PackageId))
+                    if (!Funding_PackageExists(project.ProjectId))
                     {
                         return NotFound();
                     }
@@ -115,7 +115,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(funding_Package);
+            return View(project);
         }
 
         // GET: Funding_Package/Delete/5
