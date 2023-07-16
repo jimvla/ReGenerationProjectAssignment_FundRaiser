@@ -102,6 +102,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         {
             if (ModelState.IsValid)
             {
+                List<Funding_Package> fund = new();
+                foreach (Funding_Package f in _context.Funding_Packages)
+                {
+                    fund.Add(f);
+                }
+                project.Funding_Packages = fund;
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
