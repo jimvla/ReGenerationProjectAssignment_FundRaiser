@@ -218,5 +218,61 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         {
           return (_context.Projects?.Any(e => e.ProjectId == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> AddValue(int? id)
+        {
+            if (id == null || _context.Projects == null)
+            {
+                return NotFound();
+            }
+
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return View(project);
+        }
+
+        // POST: Projects/AddValue
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddValue(int id, [Bind("TotalAmount")] Project newProject)
+        {
+            var project = await _context.Projects
+                        .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (id != newProject.ProjectId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    project.TotalAmount += newProject.TotalAmount;
+                    _context.Update(project);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProjectExists(project.ProjectId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(project);
+        }
     }
 }
