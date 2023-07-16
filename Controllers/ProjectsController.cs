@@ -114,6 +114,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             }
             
             return View(project);
+            //return View("Index"); //Redirects to index page when done
         }
 
         // GET: Projects/Edit/5
