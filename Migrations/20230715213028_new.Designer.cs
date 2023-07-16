@@ -12,7 +12,7 @@ using ReGenerationProjectAssignment_FundRaiser.DbContexts;
 namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20230715191957_new")]
+    [Migration("20230715213028_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -94,7 +94,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjectId"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -221,7 +221,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                 {
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Category", "Category")
                         .WithMany("Projects")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ReGenerationProjectAssignment_FundRaiser.Models.Project_Tracker", "Project_Tracker")
                         .WithMany("Project")

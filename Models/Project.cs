@@ -1,14 +1,23 @@
-﻿namespace ReGenerationProjectAssignment_FundRaiser.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ReGenerationProjectAssignment_FundRaiser.Models
 {
     public class Project
     {
+        [Key]
         public int ProjectId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ImageURL { get; set; }
         public string? VideoURL { get; set; }
         public int FundingGoal { get; set; }
-        public Category? Category { get; set; }
+        //Foreign Key
+        [Display(Name = "Category")]
+        public virtual int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public virtual Category? Category { get; set; }
         public User? User { get; set; }
         public Project_Tracker? Project_Tracker { get; set; }
 

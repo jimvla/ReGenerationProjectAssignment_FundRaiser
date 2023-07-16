@@ -102,7 +102,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                     ImageURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VideoURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FundingGoal = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     Project_TrackerTrackerId = table.Column<int>(type: "int", nullable: true),
                     Status_UpdateStatusId = table.Column<int>(type: "int", nullable: true)
@@ -114,7 +114,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Migrations
                         name: "FK_Projects_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
-                        principalColumn: "CategoryId");
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Projects_Project_Tracker_Project_TrackerTrackerId",
                         column: x => x.Project_TrackerTrackerId,
