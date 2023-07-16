@@ -67,12 +67,13 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
-            var categories = _context.Category.Select(c => c.CategoryId == project.CategoryId);
+            var categories = await _context.Category.FirstOrDefaultAsync(c => c.CategoryId == project.CategoryId);
+            ViewData["Categories"] = categories;
             if (project == null)
             {
                 return NotFound();
             }
-
+             
             return View(project);
         }
 

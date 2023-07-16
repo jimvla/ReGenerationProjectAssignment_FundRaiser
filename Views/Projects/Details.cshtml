@@ -1,7 +1,6 @@
 ﻿@model ReGenerationProjectAssignment_FundRaiser.Models.Project
-
 @{
-
+    var category = ViewData["Categories"] as Category;
 }
 
 <!DOCTYPE html>
@@ -54,7 +53,7 @@
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryName)
+            @category.CategoryName 
         </dd>
     </dl>
 </div>
