@@ -58,7 +58,7 @@
     </dl>
 </div>
 <div>
-    <input type="button" class="btn btn-success" value="Select Package" onclick="location.href='@Url.Action("SelectPackage", "Projects")'" />
+    <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a> |
