@@ -41,12 +41,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
         public IActionResult HomeProjects()
         {
-            var artprojects = _context.Projects
+            var homeprojects = _context.Projects
                 .Include("Category")
                 .Where(p => p.Category.CategoryId == 3)
                 .ToList();
 
-            return View(artprojects);
+            return View(homeprojects);
         }
 
         // GET: Projects

@@ -22,7 +22,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Models
         public virtual Category? Category { get; set; }
         public User? User { get; set; }
         public Project_Tracker? Project_Tracker { get; set; }
-        public virtual IEnumerable<Funding_Package> Funding_Packages { get; set; } = new List<Funding_Package>();
+
+        public virtual List<Funding_Package> Funding_Packages { get; set; } =  new List<Funding_Package>();
+        //public virtual IEnumerable<Funding_Package> Funding_Packages { get; set; } = new List<Funding_Package>();
 
 
         //public List<Status_Update>? Status_Updates { get; set; }

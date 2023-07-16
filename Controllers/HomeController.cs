@@ -20,7 +20,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
         public IActionResult Index()
         {
-            var trending = _context.Projects.OrderBy(x => x.TotalAmount);
+            var trending = _context.Projects.OrderByDescending(x => x.TotalAmount);
             var topThree = trending.Take(3);
             return View(topThree);
         }

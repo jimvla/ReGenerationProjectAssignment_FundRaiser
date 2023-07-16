@@ -9,6 +9,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Models
         public string? PackageName { get; set; }
         public int PackageValue { get; set; }
         public string? PackageReward{ get; set; }
-        public virtual IEnumerable<Project> Project { get; set; } = new List<Project>();
+        public virtual List<Project> Project { get; set; } = new List<Project>();
     }
 }
