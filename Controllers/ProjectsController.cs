@@ -67,6 +67,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
+            var categories = _context.Category.Select(c => c.CategoryId == project.CategoryId);
             if (project == null)
             {
                 return NotFound();
@@ -117,6 +118,16 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             }
 
             var project = await _context.Projects.FindAsync(id);
+            var categories = _context.Category
+                .Select(c => new SelectListItem
+                {
+                    Value = c.CategoryId.ToString(),
+                    Text = c.CategoryName
+                })
+                .ToList();
+
+            ViewData["Categories"] = categories;
+
             if (project == null)
             {
                 return NotFound();
