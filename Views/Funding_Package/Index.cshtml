@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/Main_layout.cshtml";
+    var projects = ViewData["Projects"] as Project;
 }
 
 <!DOCTYPE html>
@@ -12,6 +13,8 @@
     <title>Index</title>
 </head>
 <body>
+
+    <h5></h5>
 
 <table class="table">
     <thead>
@@ -42,8 +45,8 @@
             </td>
             <td>
                         @*<a asp-action="Projects" asp-route-id="@item.PackageId">FUND</a> *@
-                        <form asp-action="Edit">
-                            <input type="submit" value="@item.PackageValue" class="btn btn-sm" />
+                        <form asp-action="Edit"> @*@item.PackageValue*@
+                            <input type="button" class="btn btn-success" value="FUND" onclick="location.href='@Url.Action("Edit/", "Funding_Package")'" />
                         </form>
             </td>
         </tr>
