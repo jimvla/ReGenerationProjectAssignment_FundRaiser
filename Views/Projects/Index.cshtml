@@ -65,7 +65,9 @@
                         </td>
                         <td>
                             <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:calc(var(@item.TotalAmount) * 100 / var(@item.FundingGoal))%"></div>
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                    style="width:calc((@item.TotalAmount / @item.FundingGoal) * 100%)">
+                                </div>
                             </div>
                         </td>
                         <td>
