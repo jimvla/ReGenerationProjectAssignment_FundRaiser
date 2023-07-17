@@ -229,7 +229,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
-            var packages = _context.Funding_Packages;
+            var packages = _context.Funding_Packages.ToList();
             ViewData["Packages"] = packages;
             if (project == null)
             {
