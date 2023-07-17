@@ -229,7 +229,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
-            var packages = _context.Funding_Packages;
+
+            var packages = _context.Funding_Packages.ToList();
             ViewData["Packages"] = packages;
             if (project == null)
             {
@@ -250,6 +251,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                         .FirstOrDefaultAsync(m => m.ProjectId == id);  
             if (id != newProject.ProjectId)
             {
+                Console.WriteLine("Error254");
                 return NotFound();
             }
 
@@ -265,6 +267,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                 {
                     if (!ProjectExists(project.ProjectId))
                     {
+                        Console.WriteLine("Error270");
                         return NotFound();
                     }
                     else
