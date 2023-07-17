@@ -30,6 +30,9 @@
                     @Html.DisplayNameFor(model => model.VideoURL)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.FundingGoal)
                 </th>
                 <th>
@@ -55,11 +58,14 @@
                             @Html.DisplayFor(modelItem => item.VideoURL)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount) $
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.FundingGoal) $
                         </td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:calc(var(@item.TotalAmount) * 100 / var(@item.FundingGoal))%"></div>
                             </div>
                         </td>
                         <td>

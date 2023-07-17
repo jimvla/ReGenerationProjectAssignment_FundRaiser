@@ -32,10 +32,16 @@
                 </td>
                 <td>
                     <form asp-action="AddValue">
-                            @*<a asp-controller="Projects" asp-action="AddValue" asp-route-id="@Model?.ProjectId">Fund</a>*@
-                        @Html.TextBoxFor(m => m.TotalAmount, new { @Value = f.PackageValue,@type="hidden" })
-                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
-                        <input type="submit" value="Fund" class="btn btn-primary" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ProjectId" />
+                        <div class="form-group">
+                            <input asp-for="TotalAmount" value="@f.PackageValue" class="form-control" type="hidden" />
+                            <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <input type="submit" value="Fund" class="btn btn-info" />
+                        </div>
+                        
                     </form>
                 </td>
             </tr>
