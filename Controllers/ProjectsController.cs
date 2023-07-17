@@ -229,6 +229,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
+            var packages = _context.Funding_Packages;
+            ViewData["Packages"] = packages;
             if (project == null)
             {
                 return NotFound();
@@ -245,7 +247,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         public async Task<IActionResult> AddValue(int id, [Bind("TotalAmount")] Project newProject)
         {
             var project = await _context.Projects
-                        .FirstOrDefaultAsync(m => m.ProjectId == id);
+                        .FirstOrDefaultAsync(m => m.ProjectId == id);  
             if (id != newProject.ProjectId)
             {
                 return NotFound();
