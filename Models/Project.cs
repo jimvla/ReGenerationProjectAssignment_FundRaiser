@@ -12,7 +12,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Models
         public string? ImageURL { get; set; }
         public string? VideoURL { get; set; }
         public int FundingGoal { get; set; }
-
         public int TotalAmount { get; set; }
         //Foreign Key
         [Display(Name = "Category")]

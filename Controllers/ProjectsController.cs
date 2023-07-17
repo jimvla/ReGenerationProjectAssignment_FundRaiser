@@ -229,6 +229,9 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 
             var project = await _context.Projects
                 .FirstOrDefaultAsync(m => m.ProjectId == id);
+
+            var packages = _context.Funding_Packages.ToList();
+            ViewData["Packages"] = packages;
             if (project == null)
             {
                 return NotFound();
@@ -242,12 +245,13 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddValue(int id, [Bind("TotalAmount")] Project newProject)
+        public async Task<IActionResult> AddValue(int id, [Bind("ProjectId,TotalAmount")] Project newProject)
         {
             var project = await _context.Projects
-                        .FirstOrDefaultAsync(m => m.ProjectId == id);
+                        .FirstOrDefaultAsync(m => m.ProjectId == id);  
             if (id != newProject.ProjectId)
             {
+                Console.WriteLine("Error254");
                 return NotFound();
             }
 
@@ -263,6 +267,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                 {
                     if (!ProjectExists(project.ProjectId))
                     {
+                        Console.WriteLine("Error270");
                         return NotFound();
                     }
                     else

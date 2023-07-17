@@ -1,6 +1,7 @@
 ﻿@model ReGenerationProjectAssignment_FundRaiser.Models.Project
 @{
     Layout = "~/Views/Shared/Main_layout.cshtml";
+    var packages = ViewData["Packages"] as List<Funding_Package>;
 }
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <h5>Choose a Funding Package:</h5>
 
     <div>
-        @foreach (var f in Model.Funding_Packages)
+        @foreach (var f in packages)
         { 
             <table>
             <tr>
@@ -28,6 +29,20 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => f.PackageReward)
+                </td>
+                <td>
+                    <form asp-action="AddValue">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ProjectId" />
+                        <div class="form-group">
+                            <input asp-for="TotalAmount" value="@f.PackageValue" class="form-control" type="hidden" />
+                            <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <input type="submit" value="Fund" class="btn btn-info" />
+                        </div>
+                        
+                    </form>
                 </td>
             </tr>
             </table>
