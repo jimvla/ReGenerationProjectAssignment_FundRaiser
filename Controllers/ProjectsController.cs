@@ -57,6 +57,16 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                           Problem("Entity set 'CrmDbContext.Projects'  is null.");
         }
 
+        // GET: BackedProjects
+        public async Task<IActionResult> BackedProjects()
+        {
+            var projects = await _context.Projects.ToListAsync();
+            var fundedProjects = projects.Find(x => x.TotalAmount > 0);
+            return fundedProjects != null ?
+                        View(fundedProjects) :
+                        Problem("Entity set 'CrmDbContext.Projects'  is null.");
+        }
+
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -159,6 +169,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             {
                 try
                 {
+                    var fund = await _context.Projects.FindAsync(id);
+                    project.TotalAmount = fund.TotalAmount;
                     _context.Update(project);
                     await _context.SaveChangesAsync();
                 }
