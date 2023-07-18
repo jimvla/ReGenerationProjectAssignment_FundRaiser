@@ -7,7 +7,7 @@
 <link href="./css/homepage.css" rel="stylesheet" />
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4" id="logo">Welcome to the CrazyStarter</h1>
 </div> <br/>
 
 <div class="container-fluid">
@@ -38,7 +38,7 @@
                         <h5>@Model.ElementAt(1).Title</h5>
                         <p>
                             @Model.ElementAt(1).Description<br />
-                            @Model.ElementAt(0).TotalAmount $ Raised
+                            @Model.ElementAt(1).TotalAmount $ Raised
                         </p>
                     </div>
                 </a>
@@ -50,7 +50,7 @@
                         <h5>@Model.ElementAt(2).Title</h5>
                         <p>
                             @Model.ElementAt(2).Description<br />
-                            @Model.ElementAt(0).TotalAmount $ Raised
+                            @Model.ElementAt(2).TotalAmount $ Raised
                         </p>
                     </div>
                 </a>
