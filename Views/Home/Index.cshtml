@@ -24,7 +24,10 @@
                  <img src="@Model.ElementAt(0).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
                  <div class="carousel-caption d-none d-md-block">
                      <h5>@Model.ElementAt(0).Title</h5>
-                     <p>@Model.ElementAt(0).Description</p>
+                     <p>@Model.ElementAt(0).Description
+                         <br />
+                         @Model.ElementAt(0).TotalAmount $ Raised
+                     </p>
                  </div>
                 </a>
             </div>
@@ -33,7 +36,10 @@
                     <img src="@Model.ElementAt(1).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@Model.ElementAt(1).Title</h5>
-                        <p>@Model.ElementAt(1).Description</p>
+                        <p>
+                            @Model.ElementAt(1).Description<br />
+                            @Model.ElementAt(0).TotalAmount $ Raised
+                        </p>
                     </div>
                 </a>
             </div>
@@ -42,7 +48,10 @@
                     <img src="@Model.ElementAt(2).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@Model.ElementAt(2).Title</h5>
-                        <p>@Model.ElementAt(2).Description</p>
+                        <p>
+                            @Model.ElementAt(2).Description<br />
+                            @Model.ElementAt(0).TotalAmount $ Raised
+                        </p>
                     </div>
                 </a>
             </div>
@@ -83,4 +92,32 @@
     </div>
 </div>
 <br/>
+
+<div class="card text-center">
+    <div class="card-header">
+        <h3>Categories</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <a class="nav-link text-dark" href="Projects/TechProjects" id="zoom">
+                    <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
+                    <b>Tech</b>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="ArtProjects">
+                    <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
+                    <b>Art</b>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="HomeProjects">
+                    <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
+                    <b>Home</b>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 

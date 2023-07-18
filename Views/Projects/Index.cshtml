@@ -14,7 +14,7 @@
 <body>
     <h1>My Projects</h1>
     
-    <table class="table">
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>
@@ -24,21 +24,23 @@
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ImageURL)
+                    Image
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.VideoURL)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TotalAmount)
+                    Money Gathered
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FundingGoal)
+                    Funding Goal
                 </th>
                 <th>
                     Progress
                 </th>
-                <th></th>
+                <th>
+                    Actions
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -65,7 +67,7 @@
                         </td>
                         <td>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                <div class="progress-bar progress-bar-striped progress-bar-animated"
                                     style="width:calc((@item.TotalAmount / @item.FundingGoal) * 100%)">
                                 </div>
                             </div>
