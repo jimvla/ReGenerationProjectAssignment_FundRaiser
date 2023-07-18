@@ -19,6 +19,14 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             _context = context;
         }
 
+        public IActionResult AllProjects()
+        {
+            var allprojects = _context.Projects
+                .Include("Category")
+                .ToList();
+
+            return View(allprojects);
+        }
         public IActionResult TechProjects()
         {
             var techprojects = _context.Projects
@@ -61,7 +69,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         public async Task<IActionResult> BackedProjects()
         {
             var projects = await _context.Projects.ToListAsync();
-            var fundedProjects = projects.Find(x => x.TotalAmount > 0);
+            var fundedProjects = projects.FindAll(x => x.TotalAmount > 0);
             return fundedProjects != null ?
                         View(fundedProjects) :
                         Problem("Entity set 'CrmDbContext.Projects'  is null.");
@@ -145,7 +153,8 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
                 .ToList();
 
             ViewData["Categories"] = categories;
-
+            var fund = await _context.Projects.FindAsync(id);
+            project.TotalAmount = fund.TotalAmount;
             if (project == null)
             {
                 return NotFound();
@@ -158,7 +167,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Title,Description,ImageURL,VideoURL,FundingGoal,CategoryId")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Title,Description,ImageURL,VideoURL,FundingGoal,TotalAmount,CategoryId")] Project project)
         {
             if (id != project.ProjectId)
             {
@@ -169,8 +178,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             {
                 try
                 {
-                    var fund = await _context.Projects.FindAsync(id);
-                    project.TotalAmount = fund.TotalAmount;
+                    
                     _context.Update(project);
                     await _context.SaveChangesAsync();
                 }

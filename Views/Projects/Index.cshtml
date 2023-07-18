@@ -13,8 +13,9 @@
 </head>
 <body>
     <h1>My Projects</h1>
+    <br />
     
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered text-center">
         <thead>
             <tr>
                 <th>
@@ -53,7 +54,6 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @*@Html.DisplayFor(modelItem => item.ImageURL)*@
                             <img src="@item.ImageURL" style="width:100px; height:100px; object-fit:contain" alt="image"/>
                         </td>
                         <td>
@@ -73,18 +73,18 @@
                             </div>
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.ProjectId"><i class="bi bi-pencil-square"></i></a> |
-           
-                            <a asp-action="Delete" asp-route-id="@item.ProjectId"><i class="bi bi-trash3-fill"></i></a> |
-            
-                            <a asp-action="Details" asp-route-id="@item.ProjectId"><i class="bi bi-box-arrow-in-right"></i></a> 
-                        </td>
+                        <a asp-action="Edit" asp-route-id="@item.ProjectId"><i class="bi bi-pencil-square" style="font-size: 21px;"></i></a> |
+
+                        <a asp-action="Delete" asp-route-id="@item.ProjectId"><i class="bi bi-trash3-fill" style="font-size: 21px;"></i></a> |
+
+                        <a asp-action="Details" asp-route-id="@item.ProjectId"><i class="bi bi-box-arrow-in-right" style="font-size: 21px;"></i></a>
+                    </td>
                     </tr>
             }
         </tbody>
     </table>
     <p>
-        <input type="button" class="btn btn-success" value="Create" onclick="location.href='@Url.Action("Create", "Projects")'" />
+        <input type="button" class="btn btn-success" value="Create New" onclick="location.href='@Url.Action("Create", "Projects")'" />
     </p>
 </body>
 </html>

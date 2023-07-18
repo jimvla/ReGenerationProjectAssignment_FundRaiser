@@ -1,0 +1,96 @@
+﻿@model List<Project>
+
+@{
+    Layout = "~/Views/Shared/Main_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Funded Projects</h1>
+    <br />
+    @if(Model.Count == 0)
+    {
+        <br />
+        <div class="container text-center">
+            <h2>No Funded Projects</h2>
+        </div>
+        <br />
+    }
+    else{
+        <table class="table table-hover table-bordered text-center">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    VideoURL
+                </th>
+                <th>
+                    Money Gathered
+                </th>
+                <th>
+                    Funding Goal
+                </th>
+                <th>
+                    Progress
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <img src="@item.ImageURL" style="width:100px; height:100px; object-fit:contain" alt="image" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoURL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalAmount) $
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FundingGoal) $
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                 style="width:calc((@item.TotalAmount / @item.FundingGoal) * 100%)">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ProjectId"><i class="bi bi-box-arrow-in-right" style="font-size: 60px;"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+        }
+        <div class="container">
+            <a class="btn btn-primary" asp-action="Index">New Fund</a>
+        </div>
+</body>
+</html>

@@ -68,34 +68,10 @@
 </div>
 <br/>
 
-<div class="container text-center">
-    <h3>Categories</h3><br>
-    <div class="row">     
-        <div class="col-sm-4">
-            <a class="nav-link text-dark" href="Projects/TechProjects" id="zoom">
-                <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
-                <b>Tech</b>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="ArtProjects">
-                <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
-                <b>Art</b>
-            </a>
-        </div>
-        <div class="col-sm-4">
-            <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="HomeProjects">
-                <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
-                <b>Home</b>
-            </a>
-        </div>
-    </div>
-</div>
-<br/>
-
 <div class="card text-center">
     <div class="card-header">
         <h3>Categories</h3>
+
     </div>
     <div class="card-body">
         <div class="row">
@@ -119,5 +95,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="container">
+    <a asp-controller="Projects" asp-action="AllProjects">All Projects</a>
 </div>
 
