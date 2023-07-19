@@ -7,36 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReGenerationProjectAssignment_FundRaiser.DbContexts;
 using ReGenerationProjectAssignment_FundRaiser.Models;
+using ReGenerationProjectAssignment_FundRaiser.Services;
 
 namespace ReGenerationProjectAssignment_FundRaiser.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly CrmDbContext _context;
-
-        public CategoriesController(CrmDbContext context)
+        private readonly ICategoiesServices _service;
+        public CategoriesController(ICategoiesServices Service)
         {
-            _context = context;
+            _service = Service;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-              return _context.Category != null ? 
-                          View(await _context.Category.ToListAsync()) :
+              return await _service.GetCategories() != null ? 
+                          View(_service.GetCategories()) :
                           Problem("Entity set 'CrmDbContext.Category'  is null.");
         }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _service.CheckNull())
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _service.GetCategory((int)id);
             if (category == null)
             {
                 return NotFound();
@@ -60,8 +59,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                await _service.CreateCategory(category);
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -70,12 +68,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // GET: Categories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _service.CheckNull())
             {
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = await _service.GetCategory((int)id);
             if (category == null)
             {
                 return NotFound();
@@ -99,8 +97,7 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    await _service.UpdateCategory(category);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -121,13 +118,12 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Category == null)
+            if (id == null || _service.CheckNull())
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = await _service.GetCategory((int)id);
             if (category == null)
             {
                 return NotFound();
@@ -141,23 +137,17 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Category == null)
+            if (_service.CheckNull())
             {
                 return Problem("Entity set 'CrmDbContext.Category'  is null.");
             }
-            var category = await _context.Category.FindAsync(id);
-            if (category != null)
-            {
-                _context.Category.Remove(category);
-            }
-            
-            await _context.SaveChangesAsync();
+            await _service.DeleteCategory(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-          return (_context.Category?.Any(e => e.CategoryId == id)).GetValueOrDefault();
+          return _service.GetCategory(id)!= null? true : false;
         }
     }
 }
