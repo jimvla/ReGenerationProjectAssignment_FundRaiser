@@ -13,8 +13,8 @@
 </head>
 <body>
 
-<div>
-    <h3>@Model.Title</h3> <br />
+<div style="background-color:aliceblue; border: 2px solid maroon; border-radius:1%">
+    <h3 style="text-align:center">@Model.Title</h3> <br />
     <div class="content">
         <img src="@Model.ImageURL" style="width:100%; height:300px; object-fit: contain" alt="image" />
     </div>
@@ -67,16 +67,14 @@
         </dd>
     </dl>
     </div>
+         <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
+         
     </div>
-
+        <br />
 </div>
 <br />
 <div>
-        <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
-</div>
-<div>
     <br />
-    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a>
     <a class="btn btn-secondary" asp-action="Index">Back to List</a>
 </div>
 </body>

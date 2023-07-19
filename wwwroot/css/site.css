@@ -18,11 +18,24 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    
 }
+
+.mainbody {
+    margin-bottom: 60px;
+    /* Set the background image URL */
+    background-image: url('https://img.freepik.com/free-vector/color-grunge-pattern-liquidity-style-background_1409-1432.jpg?w=1380&t=st=1689763347~exp=1689763947~hmac=6f8f57c6eb09a2b9b632a4ac073760240d8e13869fb0e9dea1207b2d7e21fff4');
+    /* Set the background to repeat vertically */
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+
 
 #logo {
     font-family: 'Yellowtail', cursive;
     font-weight: 300;
-    color: burlywood ;
+    font-size: 27px;
+    color: burlywood;
 }
+

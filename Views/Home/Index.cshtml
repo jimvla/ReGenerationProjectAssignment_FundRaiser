@@ -7,11 +7,12 @@
 }
 <link href="./css/homepage.css" rel="stylesheet" />
 
+<div class="mainbody1">
 <div class="text-center">
     <h1 class="display-4" id="logo">Welcome to the CrazyStarter</h1>
 </div> <br/>
 
-<div class="container-fluid">
+<div class="container-fluid" id="background">
     <!--Carousel Effect-->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -22,7 +23,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ElementAt(0).ProjectId">
-                 <img src="@Model.ElementAt(0).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
+                    <img src="@Model.ElementAt(0).ImageURL" class="d-block w-100" style="width:100%; height:380px; object-fit: cover;" alt="ALT TEXT">
                  <div class="carousel-caption d-none d-md-block">
                      <h5>@Model.ElementAt(0).Title</h5>
                      <p>@Model.ElementAt(0).Description
@@ -34,7 +35,7 @@
             </div>
             <div class="carousel-item">
                 <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ElementAt(1).ProjectId">
-                    <img src="@Model.ElementAt(1).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
+                    <img src="@Model.ElementAt(1).ImageURL" class="d-block w-100" style="width:100%; height:380px; object-fit: cover; background-position:top;" alt="ALT TEXT">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@Model.ElementAt(1).Title</h5>
                         <p>
@@ -46,7 +47,7 @@
             </div>
             <div class="carousel-item">
                 <a asp-controller="Projects" asp-action="Details" asp-route-id="@Model.ElementAt(2).ProjectId">
-                    <img src="@Model.ElementAt(2).ImageURL" class="d-block w-100" style="width:100%; height:400px; object-fit: contain" alt="ALT TEXT">
+                    <img src="@Model.ElementAt(2).ImageURL" class="d-block w-100" style="width:100%; height:380px; object-fit: cover;" alt="ALT TEXT">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>@Model.ElementAt(2).Title</h5>
                         <p>
@@ -67,34 +68,35 @@
         </button>
     </div>
 </div>
-<br/>
+<br />
 
-<div class="card text-center">
+ <div class="card text-center" style="background: rgba(76, 175, 80, 0.1)" >
     <div class="card-header">
         <h3>Categories</h3>
-
     </div>
-    <div class="card-body">
+        <div class="card-body"">
         <div class="row">
             <div class="col-sm-4">
                 <a class="nav-link text-dark" href="Projects/TechProjects" id="zoom">
-                    <img src="./images/tech.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
+                    <img src="https://assets.thehansindia.com/h-upload/2021/12/29/1138474-gadgets.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Tech">
                     <b>Tech</b>
                 </a>
             </div>
             <div class="col-sm-4">
                 <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="ArtProjects">
-                    <img src="./images/art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
+                    <img src="https://artincontext.org/wp-content/uploads/2021/08/Types-of-Art.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Art">
                     <b>Art</b>
                 </a>
             </div>
             <div class="col-sm-4">
                 <a class="nav-link text-dark" id="zoom" asp-area="" asp-controller="Projects" asp-action="HomeProjects">
-                    <img src="./images/home.webp" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
+                    <img src="https://cdn.apartmenttherapy.info/image/upload/v1556039518/at/house%20tours/archive/Tour%20a%20Colorful%20Home%20in%20Montreal/9ddf96cc0b523b9b9b00e60dfb9ded877fb6b88b.jpg" class="img-responsive" style="width:100%; height:200px; object-fit: cover;" alt="Home">
                     <b>Home</b>
                 </a>
             </div>
         </div>
     </div>
+
+</div>
 </div>
 
