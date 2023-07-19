@@ -12,7 +12,7 @@ using ReGenerationProjectAssignment_FundRaiser.DbContexts;
 namespace ReGenerationProjectAssignment_FundRaiser.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20230718171315_new")]
+    [Migration("20230719202031_new")]
     partial class @new
     {
         /// <inheritdoc />
