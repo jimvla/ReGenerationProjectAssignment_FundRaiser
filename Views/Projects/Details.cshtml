@@ -13,13 +13,15 @@
 </head>
 <body>
 
-<div>
-    <h3>@Model.Title</h3> <br />
+<div style="background-color:aliceblue; border: 2px solid maroon; border-radius:1%">
+    <h3 style="text-align:center">@Model.Title</h3> <br />
     <div class="content">
-        <img src="@Model.ImageURL" alt="image" />
+        <img src="@Model.ImageURL" style="width:100%; height:300px; object-fit: contain" alt="image" />
     </div>
     <hr />
-    <dl class="row">
+    <div class="container">
+    <div class="row">
+    <dl class="col">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -33,34 +35,47 @@
             @Html.DisplayFor(model => model.VideoURL)
         </dd>
         <dt class="col-sm-2">
-            Money Raised
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TotalAmount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FundingGoal)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FundingGoal)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class="col-sm-10">
-            @category.CategoryName 
+            @category.CategoryName
         </dd>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Funding_Packages)
-            </dd>
     </dl>
+    <dl class="col">
+        <dt class="col-sm-10">
+            Money Raised
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalAmount) $
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FundingGoal) 
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FundingGoal) $
+        </dd>
+        <dt class="col-sm-2">
+            Progress
+        </dt>
+        <dd class="col-sm-10">
+             <div class="progress">
+             <div class="progress-bar progress-bar-striped progress-bar-animated"
+                  style="width:calc((@Model.TotalAmount / @Model.FundingGoal) * 100%)">
+                  
+             </div>
+             </div>
+        </dd>
+    </dl>
+    </div>
+         <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
+         
+    </div>
+        <br />
 </div>
+<br />
 <div>
-        <a class="btn btn-success" asp-action="AddValue" asp-route-id="@Model.ProjectId">Select Package</a>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProjectId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <a class="btn btn-secondary" asp-action="Index">Back to List</a>
 </div>
 </body>
 </html>

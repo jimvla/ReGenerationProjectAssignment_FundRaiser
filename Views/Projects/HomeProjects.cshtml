@@ -14,23 +14,28 @@
 </head>
 <body>
     <h1>Home Projects</h1>
-
-    <table>
-        <tr>
-            <th>Project Name</th>
-            <th>Description</th>
-            <!-- Add more columns as per your project properties -->
-        </tr>
-        @foreach (var project in Model)
-        {
-            <tr>
-                <td>@project.Title</td>
-                <td>@project.Description</td>
-                <!-- Add more columns as per your project properties -->
-            </tr>
-        }
-    </table>
-
+    <br />
+    <div class="container">
+        <div class="row">
+            <br />
+            @foreach (var project in Model)
+            {
+                <div class="col">
+                    <div class="card" style="width:400px; background-color:aliceblue; border: 2px solid maroon;">
+                       <br>
+                       <img class="card-img-top" src="@project.ImageURL" style="width:100%; height:200px; object-fit: contain" alt="Card image">
+                       <div class="card-body">
+                            <h4 class="card-title">@project.Title</h4>
+                            <p class="card-text">@project.Description.</p>
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@project.ProjectId"><i class="bi bi-box-arrow-in-right"> FUND</i></a>
+                       </div>
+                   </div>
+                <br />
+                </div>
+                
+            }
+        </div>
+    </div>
 
 </body>
 </html>

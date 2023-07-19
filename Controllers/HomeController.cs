@@ -15,8 +15,6 @@ namespace ReGenerationProjectAssignment_FundRaiser.Controllers
             _logger = logger;
             _context = context;
         }
-        
-
 
         public IActionResult Index()
         {

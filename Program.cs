@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var myConn = "Server=AMD-FX6300\\SQLSERVER2019;Initial Catalog=Regeneration;" +
+var myConn = "Server=AMD-FX6300\\SQLSERVER2019;Initial Catalog=Fund;" +
         "Integrated security=True;TrustServerCertificate=True;";
 
 builder.Services.AddDbContext<CrmDbContext>(

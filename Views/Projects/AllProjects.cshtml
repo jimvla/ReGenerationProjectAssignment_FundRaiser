@@ -9,12 +9,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Art</title>
-
+    <title>Index</title>
 </head>
 <body>
-    <h1>Art Projects</h1>
-
+    <h1>Available Projects</h1>
     <br />
     <div class="container">
         <div class="row">
@@ -28,14 +26,20 @@
                         <div class="card-body">
                             <h4 class="card-title">@project.Title</h4>
                             <p class="card-text">@project.Description.</p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                     style="width:calc((@project.TotalAmount / @project.FundingGoal) * 100%)">
+                                </div>
+                            </div>
+                            <br>
                             <a class="btn btn-primary" asp-action="Details" asp-route-id="@project.ProjectId"><i class="bi bi-box-arrow-in-right"> FUND</i></a>
                         </div>
                     </div>
+                    <br>
                 </div>
             }
         </div>
     </div>
-
 
 </body>
 </html>
