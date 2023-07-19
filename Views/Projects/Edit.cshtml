@@ -16,7 +16,7 @@
 <h4>Project</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+        <div class="col-md-4" style="background-color:aliceblue; border: 2px solid maroon ">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProjectId" />
@@ -57,13 +57,15 @@
                     </select>
                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
+            <br />
         </form>
     </div>
 </div>
-
+<br />
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
